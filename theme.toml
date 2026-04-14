@@ -2,7 +2,7 @@ name = "colomr-v1"
 license = "GPL-3.0"
 licenselink = "https://github.com/colomr-dev/colomr-v1-theme/blob/main/LICENSE"
 description = "Tema personal basado en Material Design 3, diseñado con Google Stitch 2"
-homepage = "https://colomr.pm"
+homepage = "https://colomr.cc"
 min_version = "0.120.0"
 tags = [
   "personal",
@@ -25,4 +25,4 @@ features = [
 
 [author]
   name = "Francisco Colomer"
-  homepage = "https://colomr.pm"
+  homepage = "https://colomr.cc"

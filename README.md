@@ -266,11 +266,11 @@ You are free to use, modify, and distribute this theme, provided that:
 
 ## Author
 
-Created by **Francisco Colomer** ([colomr.pm](https://colomr.pm))
+Created by **Francisco Colomer** ([colomr.cc](https://colomr.cc))
 
 - Design: [Google Stitch 2](https://stitch.withgoogle.com)
 - Development: [Claude](https://claude.ai) (Anthropic)
 - Icons: [Material Symbols](https://fonts.google.com/icons) + [Font Awesome 4.7](https://fontawesome.com/v4/)
 - Fonts: [Plus Jakarta Sans](https://fonts.google.com/specimen/Plus+Jakarta+Sans) + [Inter](https://fonts.google.com/specimen/Inter)
 
-If you use this theme, a link back to the [original repository](https://github.com/colomr-dev/colomr-v1-theme) or to [colomr.pm](https://colomr.pm) is appreciated.
+If you use this theme, a link back to the [original repository](https://github.com/colomr-dev/colomr-v1-theme) or to [colomr.cc](https://colomr.cc) is appreciated.
