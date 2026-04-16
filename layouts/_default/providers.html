@@ -56,6 +56,7 @@
         </div>
         <div class="fbadge__info">
           <span class="fbadge__title">{{ .titulo }}</span>
+          <span class="fbadge__desc">{{ if and (eq $.Site.Language.Lang "en") .desc_en }}{{ .desc_en }}{{ else }}{{ .desc }}{{ end }}</span>
           <span class="fbadge__date">{{ dateFormat "Jan 2006" .fecha }}</span>
         </div>
       </a>

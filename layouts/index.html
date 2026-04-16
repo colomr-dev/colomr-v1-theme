@@ -20,7 +20,7 @@
     </p>
     <div class="hero__ctas">
       {{ range .ctas }}
-      <a href="{{ .url | relURL }}" class="btn btn--{{ .style }}">{{ .label }}</a>
+      <a href="{{ .url | relLangURL }}" class="btn btn--{{ .style }}">{{ .label }}</a>
       {{ end }}
     </div>
     {{ end }}
@@ -50,7 +50,7 @@
             <p class="learning-card__desc">{{ .desc }}</p>
           </div>
         </div>
-        <a href="{{ .url | relURL }}" class="learning-card__btn">Explorar</a>
+        <a href="{{ .url | relLangURL }}" class="learning-card__btn">{{ i18n "explore_btn" }}</a>
       </div>
       {{ end }}
     </div>

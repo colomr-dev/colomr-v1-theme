@@ -15,6 +15,7 @@ Dark mode by default, responsive, lightweight, and fully configurable from front
 - Material Symbols + Font Awesome icons
 - Responsive: desktop nav + mobile bottom nav
 - SCSS with MD3 design tokens (easy color/font customization)
+- **Multilingual support** (i18n) with language selector and browser detection
 - Google Analytics support
 
 ## Requirements
@@ -26,7 +27,7 @@ Dark mode by default, responsive, lightweight, and fully configurable from front
 
 ```bash
 cd your-hugo-site
-git submodule add https://github.com/colomr-dev/colomr-v1-theme.git themes/colomr-v1
+git submodule add https://github.com/colomr-cc/colomr-v1-theme.git themes/colomr-v1
 ```
 
 Set the theme in `hugo.toml`:
@@ -78,6 +79,96 @@ languagecode = "en"
   url = "/about/"
   nav_icon = "person"
 ```
+
+### Multilingual (i18n)
+
+The theme has built-in multilingual support. To enable it, configure Hugo's `[languages]` blocks in `hugo.toml`:
+
+```toml
+defaultContentLanguage = "es"
+defaultContentLanguageInSubdir = true   # all languages under /es/, /en/ prefixes
+
+[languages.es]
+  languageCode = "es"
+  languageName = "Español"
+  weight = 1
+
+[languages.es.params]
+  description = "Site description in Spanish"
+
+[[languages.es.params.nav_links]]
+  label = "Quién"
+  url = "/sobre-mi/"
+  nav_icon = "person"
+
+[languages.en]
+  languageCode = "en"
+  languageName = "English"
+  weight = 2
+
+[languages.en.params]
+  description = "Site description in English"
+
+[[languages.en.params.nav_links]]
+  label = "Who"
+  url = "/about/"
+  nav_icon = "person"
+```
+
+#### Content files
+
+Use Hugo's "translation by filename" approach. Rename content files with language suffixes:
+
+```
+content/
+  _index.es.md          # Spanish home
+  _index.en.md          # English home
+  about/
+    index.es.md         # url: "/es/about/"
+    index.en.md         # url: "/en/about/"
+```
+
+When using custom `url:` in front matter, include the language prefix (e.g., `url: "/es/sobre-mi/"`), because Hugo does not prepend it automatically for explicit URLs.
+
+#### i18n strings
+
+Create `i18n/es.toml` and `i18n/en.toml` in your project root. The theme uses these translation keys:
+
+| Key | Usage | Example (ES) | Example (EN) |
+|-----|-------|-------------|-------------|
+| `home_label` | Home link in nav | Inicio | Home |
+| `explore_btn` | Button on learning cards | Explorar | Explore |
+| `page_under_construction` | Empty blocks fallback | Página en construcción. | Page under construction. |
+| `toggle_theme` | Theme toggle aria-label | Cambiar modo de color | Toggle color mode |
+| `open_menu` | Hamburger aria-label | Abrir menú | Open menu |
+| `footer_credit` | Footer credit prefix | Desarrollado con | Built with |
+| `footer_using` | Footer credit connector | usando | using |
+| `switch_language` | Language selector label | EN | ES |
+| `nav_aria` | Bottom nav aria-label | Navegación principal | Main navigation |
+
+#### Language selector
+
+A text-based toggle (e.g., "EN" / "ES") appears automatically next to the theme toggle when pages have translations. It saves the user's choice to `localStorage` under the key `colomr-lang`.
+
+#### Badge descriptions
+
+Badge data files support a `desc_en` field for English descriptions alongside the default `desc` (Spanish). The template selects the right field based on the current language:
+
+```json
+{
+  "titulo": "Badge Name",
+  "desc": "Descripción en español.",
+  "desc_en": "Description in English."
+}
+```
+
+#### Browser language detection
+
+For the root URL redirect (`/` → `/es/` or `/en/`), create a `layouts/alias.html` in your project that detects the browser language via `navigator.languages` and checks `localStorage` for a saved preference. See the [colomr.cc repo](https://github.com/colomr-cc/colomr.cc/blob/main/layouts/alias.html) for an example implementation.
+
+#### SEO
+
+The theme automatically generates `<link rel="alternate" hreflang="...">` tags when translations exist. Hugo also generates per-language sitemaps automatically.
 
 ### Static assets
 
@@ -273,4 +364,4 @@ Created by **Francisco Colomer** ([colomr.cc](https://colomr.cc))
 - Icons: [Material Symbols](https://fonts.google.com/icons) + [Font Awesome 4.7](https://fontawesome.com/v4/)
 - Fonts: [Plus Jakarta Sans](https://fonts.google.com/specimen/Plus+Jakarta+Sans) + [Inter](https://fonts.google.com/specimen/Inter)
 
-If you use this theme, a link back to the [original repository](https://github.com/colomr-dev/colomr-v1-theme) or to [colomr.cc](https://colomr.cc) is appreciated.
+If you use this theme, a link back to the [original repository](https://github.com/colomr-cc/colomr-v1-theme) or to [colomr.cc](https://colomr.cc) is appreciated.

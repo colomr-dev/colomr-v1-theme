@@ -1,26 +1,33 @@
 <header class="site-header">
   <nav class="site-nav">
     <div class="nav-brand">
-      <a href="{{ "/" | relURL }}" class="nav-logo-link">
+      <a href="{{ "/" | relLangURL }}" class="nav-logo-link">
         <img src="/images/logo.png" alt="{{ .Site.Params.author }}" class="nav-logo" />
       </a>
     </div>
     <div class="nav-links">
       {{ range .Site.Params.nav_links }}
-      <a href="{{ .url | relURL }}" class="nav-link{{ if eq $.RelPermalink .url }} nav-link--active{{ end }}">
+      <a href="{{ .url | relLangURL }}" class="nav-link{{ if eq $.RelPermalink (.url | relLangURL) }} nav-link--active{{ end }}">
         {{ with .nav_icon }}<span class="material-symbols-outlined nav-link__icon">{{ . }}</span>{{ end }}
         {{ .label }}
       </a>
       {{ end }}
     </div>
     <div class="nav-actions">
-      <button class="theme-toggle" id="theme-toggle" aria-label="Cambiar modo de color" onclick="window.__toggleTheme()">
+      <button class="theme-toggle" id="theme-toggle" aria-label="{{ i18n "toggle_theme" }}" onclick="window.__toggleTheme()">
         <span class="material-symbols-outlined" id="theme-icon">light_mode</span>
       </button>
+      {{ if .IsTranslated }}
+      {{ range .Translations }}
+      <a href="{{ .RelPermalink }}" class="lang-toggle" aria-label="{{ i18n "switch_language" }}" onclick="localStorage.setItem('colomr-lang','{{ .Language.Lang }}')">
+        {{ i18n "switch_language" }}
+      </a>
+      {{ end }}
+      {{ end }}
       <div class="nav-avatar">
         <img src="{{ .Site.Params.avatarurl | default "/images/avatar.png" }}" alt="{{ .Site.Params.author }}" />
       </div>
-      <button class="nav-hamburger" id="nav-hamburger" aria-label="Abrir menú" aria-expanded="false">
+      <button class="nav-hamburger" id="nav-hamburger" aria-label="{{ i18n "open_menu" }}" aria-expanded="false">
         <span class="material-symbols-outlined">menu</span>
       </button>
     </div>
@@ -29,25 +36,32 @@
 
 <!-- Drawer móvil -->
 <div class="nav-drawer" id="nav-drawer" aria-hidden="true">
-  <a href="{{ "/" | relURL }}" class="nav-drawer__link{{ if .IsHome }} nav-drawer__link--active{{ end }}">
-    <span class="material-symbols-outlined">home</span> Home
+  <a href="{{ "/" | relLangURL }}" class="nav-drawer__link{{ if .IsHome }} nav-drawer__link--active{{ end }}">
+    <span class="material-symbols-outlined">home</span> {{ i18n "home_label" }}
   </a>
   {{ range .Site.Params.nav_links }}
-  <a href="{{ .url | relURL }}" class="nav-drawer__link{{ if eq $.RelPermalink .url }} nav-drawer__link--active{{ end }}">
+  <a href="{{ .url | relLangURL }}" class="nav-drawer__link{{ if eq $.RelPermalink (.url | relLangURL) }} nav-drawer__link--active{{ end }}">
     {{ with .nav_icon }}<span class="material-symbols-outlined">{{ . }}</span>{{ end }} {{ .label }}
   </a>
+  {{ end }}
+  {{ if $.IsTranslated }}
+  {{ range $.Translations }}
+  <a href="{{ .RelPermalink }}" class="nav-drawer__link" onclick="localStorage.setItem('colomr-lang','{{ .Language.Lang }}')">
+    <span class="material-symbols-outlined">translate</span> {{ i18n "switch_language" }}
+  </a>
+  {{ end }}
   {{ end }}
 </div>
 <div class="nav-overlay" id="nav-overlay"></div>
 
 <!-- Bottom nav (solo móvil) -->
-<nav class="bottom-nav" aria-label="Navegación principal">
-  <a href="{{ "/" | relURL }}" class="bottom-nav__item{{ if .IsHome }} bottom-nav__item--active{{ end }}">
+<nav class="bottom-nav" aria-label="{{ i18n "nav_aria" }}">
+  <a href="{{ "/" | relLangURL }}" class="bottom-nav__item{{ if .IsHome }} bottom-nav__item--active{{ end }}">
     <span class="material-symbols-outlined">home</span>
-    <span>Home</span>
+    <span>{{ i18n "home_label" }}</span>
   </a>
   {{ range .Site.Params.nav_links }}
-  <a href="{{ .url | relURL }}" class="bottom-nav__item{{ if eq $.RelPermalink .url }} bottom-nav__item--active{{ end }}">
+  <a href="{{ .url | relLangURL }}" class="bottom-nav__item{{ if eq $.RelPermalink (.url | relLangURL) }} bottom-nav__item--active{{ end }}">
     {{ with .nav_icon }}<span class="material-symbols-outlined">{{ . }}</span>{{ end }}
     <span>{{ .label }}</span>
   </a>
