@@ -19,7 +19,7 @@
       </button>
       {{ if .IsTranslated }}
       {{ range .Translations }}
-      <a href="{{ .Permalink }}" class="lang-toggle" aria-label="{{ i18n "switch_language" }}" onclick="localStorage.setItem('colomr-lang','{{ .Language.Lang }}')">
+      <a href="{{ .RelPermalink }}" class="lang-toggle" aria-label="{{ i18n "switch_language" }}" onclick="localStorage.setItem('colomr-lang','{{ .Language.Lang }}')">
         {{ i18n "switch_language" }}
       </a>
       {{ end }}
@@ -46,7 +46,7 @@
   {{ end }}
   {{ if $.IsTranslated }}
   {{ range $.Translations }}
-  <a href="{{ .Permalink }}" class="nav-drawer__link" onclick="localStorage.setItem('colomr-lang','{{ .Language.Lang }}')">
+  <a href="{{ .RelPermalink }}" class="nav-drawer__link" onclick="localStorage.setItem('colomr-lang','{{ .Language.Lang }}')">
     <span class="material-symbols-outlined">translate</span> {{ i18n "switch_language" }}
   </a>
   {{ end }}
