@@ -49,6 +49,11 @@
       {{ range .items }}
       <li class="iblock-timeline__item">
         <div class="iblock-timeline__dot"></div>
+        {{ with .logo }}
+        <div class="iblock-timeline__logo">
+          <img src="{{ . }}" alt="" loading="lazy" />
+        </div>
+        {{ end }}
         <div class="iblock-timeline__body">
           <span class="iblock-timeline__role">{{ .role }}</span>
           <span class="iblock-timeline__company">{{ .company }}</span>
