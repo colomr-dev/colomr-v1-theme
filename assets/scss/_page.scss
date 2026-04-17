@@ -227,12 +227,13 @@
 
 .iblock-timeline__role {
   font-family: var(--font-display);
-  font-weight: 700;
+  font-weight: 400;
   font-size: 0.9375rem;
   color: var(--color-on-surface);
 }
 
 .iblock-timeline__company {
+  font-weight: 700;
   font-size: 0.875rem;
   color: var(--color-on-surface-variant);
 }
